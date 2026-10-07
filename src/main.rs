@@ -33,12 +33,14 @@ fn button(rect: Rect, text: &str, active: bool) -> bool {
             PANEL
         },
     );
-    let d = measure_text(text, None, 16, 1.0);
+    let natural = measure_text(text, None, 16, 1.0);
+    let font_size = (16.0 * ((rect.w - 12.0) / natural.width).min(1.0)) as u16;
+    let d = measure_text(text, None, font_size, 1.0);
     label(
         text,
         rect.x + (rect.w - d.width) / 2.0,
         rect.y + 23.0,
-        16.0,
+        font_size as f32,
         if active { INK } else { WHITE },
     );
     hover && is_mouse_button_pressed(MouseButton::Left)
@@ -63,7 +65,13 @@ async fn main() {
         let h = screen_height();
         let margin = 20.0;
         label("WORTHIFY / FIELD NOTES", margin, 25.0, 16.0, TEAL);
-        label("Mines, reconstructed", margin, 56.0, 28.0, WHITE);
+        label(
+            "Mines, reconstructed",
+            margin,
+            56.0,
+            if w < 360.0 { 24.0 } else { 28.0 },
+            WHITE,
+        );
         let bw = ((w - 48.0) / 3.0).min(180.0);
         let left = (w - (bw * 3.0 + 8.0)) / 2.0;
         if button(Rect::new(left, 72.0, bw, 34.0), "New board", false) || is_key_pressed(KeyCode::N)
@@ -89,7 +97,7 @@ async fn main() {
             flag_mode = !flag_mode;
         }
         let phase = match game.phase {
-            Phase::Ready => "First click is safe",
+            Phase::Ready => "First click safe",
             Phase::Playing => "Keep exploring",
             Phase::Won => "All clear. You won!",
             Phase::Lost => "Mine hit. Restart",
@@ -225,17 +233,25 @@ async fn main() {
             flag_mode = !flag_mode;
         }
         label(
-            "Click: reveal / chord  |  Right-click: flag",
+            if w < 400.0 {
+                "Tap: reveal/chord | Mode: flag"
+            } else {
+                "Click: reveal / chord  |  Right-click: flag"
+            },
             ox,
             bottom + 58.0,
-            15.0,
+            if w < 400.0 { 12.0 } else { 15.0 },
             MUTED,
         );
         label(
-            "Arrows + Enter / Space  |  F: mode  R: restart",
+            if w < 400.0 {
+                "Keys: arrows, Enter, Space | F: mode"
+            } else {
+                "Arrows + Enter / Space  |  F: mode  R: restart"
+            },
             ox,
             bottom + 80.0,
-            14.0,
+            if w < 400.0 { 11.0 } else { 14.0 },
             MUTED,
         );
         #[cfg(target_arch = "wasm32")]

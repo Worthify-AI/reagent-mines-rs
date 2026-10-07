@@ -1,5 +1,9 @@
 'use strict';
-document.getElementById('glcanvas').addEventListener('contextmenu', event => event.preventDefault());
+const worthifyCanvas = document.getElementById('glcanvas');
+// The runtime focuses its canvas on startup. Preserve keyboard focus without
+// pulling a reader down the article when the lazy iframe initializes.
+worthifyCanvas.focus = (options = {}) => HTMLElement.prototype.focus.call(worthifyCanvas, { ...options, preventScroll: true });
+worthifyCanvas.addEventListener('contextmenu', event => event.preventDefault());
 miniquad_add_plugin({register_plugin(importObject) {
   importObject.env.worthify_status = (phase, remaining, revealed) => {
     const status = document.getElementById('game-status');
