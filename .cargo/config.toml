@@ -1,0 +1,4 @@
+[target.wasm32-unknown-unknown]
+# Miniquad's WebGL functions are supplied by the pinned, self-hosted JS loader.
+# Keep these external functions as Wasm imports when release LTO is enabled.
+rustflags = ["-C", "link-arg=--import-undefined"]

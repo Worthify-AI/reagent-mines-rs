@@ -1,0 +1,5 @@
+{
+  "frozen_at": "2026-10-07T06:18:07.131490+00:00",
+  "lib_sha256": "ce5bb65f4e24f7e86c991cda39bb9728eb8f32cb9cf8f7a952b6dbbc4b3bef6d",
+  "calibration": "24 traces matched after correcting an out-of-bounds index overflow; holdout outcomes not used to construct the engine"
+}

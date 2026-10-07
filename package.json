@@ -1,0 +1,10 @@
+{
+  "name": "reagent-mines-rs-browser-checks",
+  "private": true,
+  "scripts": {
+    "test:browser": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.58.2"
+  }
+}

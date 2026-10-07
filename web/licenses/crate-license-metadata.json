@@ -1,0 +1,47 @@
+[
+  {
+    "name": "malloc_buf",
+    "repository": "https://github.com/SSheldon/malloc_buf",
+    "license": "MIT",
+    "authors": [
+      "Steven Sheldon"
+    ],
+    "nested_notice_count": 0
+  },
+  {
+    "name": "ndk-sys",
+    "repository": "https://github.com/rust-windowing/android-ndk-rs",
+    "license": "MIT OR Apache-2.0",
+    "authors": [
+      "The Rust Windowing contributors"
+    ],
+    "nested_notice_count": 0
+  },
+  {
+    "name": "quad-rand",
+    "repository": "https://github.com/not-fl3/quad-rand",
+    "license": "MIT",
+    "authors": [
+      "not-fl3 <not.fl3@gmail.com>"
+    ],
+    "nested_notice_count": 0
+  },
+  {
+    "name": "winapi-i686-pc-windows-gnu",
+    "repository": "https://github.com/retep998/winapi-rs",
+    "license": "MIT/Apache-2.0",
+    "authors": [
+      "Peter Atashian <retep998@gmail.com>"
+    ],
+    "nested_notice_count": 0
+  },
+  {
+    "name": "winapi-x86_64-pc-windows-gnu",
+    "repository": "https://github.com/retep998/winapi-rs",
+    "license": "MIT/Apache-2.0",
+    "authors": [
+      "Peter Atashian <retep998@gmail.com>"
+    ],
+    "nested_notice_count": 0
+  }
+]
