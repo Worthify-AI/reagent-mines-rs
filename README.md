@@ -31,8 +31,7 @@ chording, first-click safety, reset, counters, win/loss and ignored invalid or
 terminal actions. The ordinary generator is our own; it excludes the first
 square and its neighbors from mine placement.
 
-Excluded: the reference’s no-guess generation algorithm, solver, alternate
-tilings, and complete save-file compatibility. **Reference** loads observed board
+Excluded: the reference’s no-guess generation algorithm, solver and complete save-file compatibility. **Reference** loads observed board
 one; it does not decode arbitrary reference Game IDs.
 
 Fixtures contain eight boards and 36 observed traces: 24 construction comparisons
