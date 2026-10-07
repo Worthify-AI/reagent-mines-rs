@@ -86,3 +86,5 @@ See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and licenses/ for the full
 reference notice, dependency terms and embedded font notice. Presentation is
 original. No original game binary, original implementation, private research,
 ReAgent source, infrastructure trace or credentials are included.
+
+A later live UI acceptance run at a 30-second per-function budget verified all 212 saved native outputs and provenance, plus a selected function rerun and revision reload. A separate run at the 5-second UI default produced 210 outputs and two timeouts. These are output and persistence checks; semantic IR remained unavailable. Later chat runs encountered a provider outage and an alternative-provider quota limit; embedding requests also failed.
