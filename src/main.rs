@@ -1,10 +1,11 @@
 use macroquad::prelude::*;
 use reagent_mines_rs::{Cell, Game, Phase};
 mod reference_board;
-const INK: Color = Color::new(0.035, 0.075, 0.12, 1.0);
-const PANEL: Color = Color::new(0.09, 0.15, 0.21, 1.0);
-const TEAL: Color = Color::new(0.24, 0.88, 0.78, 1.0);
-const MUTED: Color = Color::new(0.57, 0.68, 0.74, 1.0);
+const INK: Color = Color::new(0.055, 0.055, 0.055, 1.0);
+const PANEL: Color = Color::new(0.18, 0.19, 0.19, 1.0);
+const ACCENT: Color = Color::new(0.88, 0.9, 0.9, 1.0);
+const ERROR: Color = Color::new(0.93, 0.49, 0.46, 1.0);
+const MUTED: Color = Color::new(0.67, 0.67, 0.66, 1.0);
 fn config() -> Conf {
     Conf {
         window_title: "Worthify — Mines in Rust".into(),
@@ -26,9 +27,9 @@ fn button(rect: Rect, text: &str, active: bool) -> bool {
         rect.w,
         rect.h,
         if active {
-            TEAL
+            ACCENT
         } else if hover {
-            Color::new(0.16, 0.26, 0.33, 1.0)
+            Color::new(0.25, 0.26, 0.26, 1.0)
         } else {
             PANEL
         },
@@ -64,7 +65,7 @@ async fn main() {
         let w = screen_width();
         let h = screen_height();
         let margin = 20.0;
-        label("WORTHIFY / FIELD NOTES", margin, 25.0, 16.0, TEAL);
+        label("WORTHIFY / FIELD NOTES", margin, 25.0, 16.0, ACCENT);
         label(
             "Mines, reconstructed",
             margin,
@@ -116,9 +117,9 @@ async fn main() {
             132.0,
             16.0,
             if game.phase == Phase::Lost {
-                PINK
+                ERROR
             } else {
-                TEAL
+                ACCENT
             },
         );
         let cell = ((w - 40.0) / 8.0).min((h - 260.0) / 8.0).clamp(20.0, 62.0);
@@ -164,12 +165,12 @@ async fn main() {
                 let c = game.cells[y * 8 + x];
                 let bg = match c {
                     Cell::Hidden | Cell::Flag => PANEL,
-                    Cell::Exploded => Color::new(0.55, 0.14, 0.23, 1.0),
-                    Cell::Open(_) => Color::new(0.055, 0.11, 0.16, 1.0),
+                    Cell::Exploded => Color::new(0.36, 0.16, 0.16, 1.0),
+                    Cell::Open(_) => Color::new(0.095, 0.10, 0.10, 1.0),
                 };
                 draw_rectangle(px + 1.5, py + 1.5, cell - 3.0, cell - 3.0, bg);
                 if cursor == (x, y) {
-                    draw_rectangle_lines(px + 3.0, py + 3.0, cell - 6.0, cell - 6.0, 1.2, TEAL);
+                    draw_rectangle_lines(px + 3.0, py + 3.0, cell - 6.0, cell - 6.0, 1.2, ACCENT);
                 }
                 match c {
                     Cell::Flag => {
@@ -179,17 +180,17 @@ async fn main() {
                             px + cell * 0.36,
                             py + cell * 0.75,
                             2.0,
-                            TEAL,
+                            ACCENT,
                         );
                         draw_triangle(
                             vec2(px + cell * 0.36, py + cell * 0.25),
                             vec2(px + cell * 0.70, py + cell * 0.39),
                             vec2(px + cell * 0.36, py + cell * 0.52),
-                            TEAL,
+                            ACCENT,
                         );
                     }
                     Cell::Exploded => {
-                        draw_circle(px + cell * 0.5, py + cell * 0.5, cell * 0.14, PINK);
+                        draw_circle(px + cell * 0.5, py + cell * 0.5, cell * 0.14, ERROR);
                         for k in 0..8 {
                             let a = k as f32 * std::f32::consts::PI / 4.0;
                             draw_line(
@@ -198,7 +199,7 @@ async fn main() {
                                 px + cell * 0.5 + a.cos() * cell * 0.28,
                                 py + cell * 0.5 + a.sin() * cell * 0.28,
                                 2.0,
-                                PINK,
+                                ERROR,
                             );
                         }
                     }
@@ -206,8 +207,7 @@ async fn main() {
                         let s = n.to_string();
                         let fs = (cell * 0.5) as u16;
                         let d = measure_text(&s, None, fs, 1.0);
-                        let color = [TEAL, SKYBLUE, GOLD, PINK, VIOLET, ORANGE, WHITE, MUTED]
-                            [n as usize - 1];
+                        let color = ACCENT;
                         label(
                             &s,
                             px + (cell - d.width) / 2.0,
