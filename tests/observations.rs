@@ -56,3 +56,11 @@ fn calibration_traces() {
 fn holdout_traces() {
     compare(include_str!("../fixtures/holdout.json"));
 }
+
+// Black-box regressions: a flag interrupts an empty-region flood; removing
+// that flag and clicking the neighboring open zero leaves the hole covered.
+// Both original traces were captured before applying the compatibility fix.
+#[test]
+fn observed_flagged_empty_region_does_not_resume_on_zero_click() {
+    compare(include_str!("../fixtures/flagged-empty-region.json"));
+}

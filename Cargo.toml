@@ -3,7 +3,7 @@ name = "reagent-mines-rs"
 version = "0.1.0"
 edition = "2021"
 license = "MIT"
-description = "A bounded Mines behavior reimplementation with original Worthify presentation"
+description = "A bounded Mines behavior reimplementation with a classic screenshot-derived presentation"
 
 [dependencies]
 macroquad = { version = "=0.4.14", default-features = false }

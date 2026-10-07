@@ -126,6 +126,9 @@ impl Game {
             self.place(i);
         }
         match self.cells[i] {
+            // Reference clicks on an open zero do not resume a flood after
+            // a neighboring safe flag is removed (observed boards 01 and 03).
+            Cell::Open(0) => {}
             Cell::Open(n) => {
                 let neighbors = self.neighbors(i);
                 if neighbors

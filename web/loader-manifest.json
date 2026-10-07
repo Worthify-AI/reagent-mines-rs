@@ -1,5 +1,5 @@
 {
   "source": "miniquad 0.4.8 crate js/gl.js",
   "loader_sha256": "2222410d803d43800c4d1b3c14afe3e34f7aa1f26fc24efd4f33945fc96fccfb",
-  "wasm_sha256": "81e76c58c3aca9f63ced9c62cc8795701c7ccb939d1e3e6898155021bc392e8a"
+  "wasm_sha256": "488151caa8d89b2c79490c369e80c8494922282e0f09cb5fb9227492ac1c917f"
 }

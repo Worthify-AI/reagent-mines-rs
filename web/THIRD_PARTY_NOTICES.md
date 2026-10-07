@@ -391,3 +391,7 @@ Macroquad 0.4.14 embeds ProggyClean.ttf. Its upstream font-family MIT notice is 
 ## Emscripten-derived browser loader
 
 miniquad js/gl.js identifies code derived from Emscripten parseTools and library_webgl. The upstream MIT/NCSA notice is retained in licenses/EMSCRIPTEN-LICENSE.txt.
+
+## DejaVu Sans font assets
+
+The classic board renderer embeds unmodified DejaVu Sans and DejaVu Sans Bold. Bitstream copyright (c) 2003; DejaVu changes are public domain. Distributed under the Bitstream Vera font license; see licenses/DEJAVU-FONTS-LICENSE.txt. Upstream: https://dejavu-fonts.github.io/.
